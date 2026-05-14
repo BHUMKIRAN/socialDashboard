@@ -2,29 +2,17 @@
 
 import React from "react";
 import {
-  QueryClient,
   QueryClientProvider,
   HydrationBoundary,
   DehydratedState,
 } from "@tanstack/react-query";
+import { makeQueryClient } from "@/service/queryClient";
 
 export const TanstackProvider: React.FC<{
   children: React.ReactNode;
   dehydratedState?: DehydratedState;
 }> = ({ children, dehydratedState }) => {
-  const [queryClient] = React.useState(
-    () =>
-      new QueryClient({
-        defaultOptions: {
-          queries: {
-            staleTime: 1000 * 60 * 5,
-            gcTime: 1000 * 60 * 10,
-            refetchOnMount: false,
-            refetchOnWindowFocus: false,
-          },
-        },
-      }),
-  );
+  const [queryClient] = React.useState(() => makeQueryClient());
 
   return (
     <QueryClientProvider client={queryClient}>
