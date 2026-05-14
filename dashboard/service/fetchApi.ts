@@ -11,7 +11,13 @@ const fetchFromApi = async <T>(path: string): Promise<T> => {
   return res.json();
 };
 
-export const posts = () => fetchFromApi("/posts");
+export type Post = {
+  id: number;
+  title: string;
+  userId: number;
+};
+
+export const posts = () => fetchFromApi<Post[]>("/posts");
 
 export const users = () => fetchFromApi("/users");
 

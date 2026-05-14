@@ -9,18 +9,21 @@ import PostsClient from "./components/PostsClient";
 const MainPage = async () => {
   const queryClient = makeQueryClient();
 
-  await queryClient.prefetchQuery(["posts"], posts);
+  await queryClient.prefetchQuery({
+    queryKey: ["posts"],
+    queryFn: posts,
+  });
 
   const dehydratedState = dehydrate(queryClient);
 
   return (
-    <main className="container mx-auto p-6">
+    <div className="container mx-auto p-6">
       <h1 className="text-2xl font-bold mb-4">Home</h1>
 
       <TanstackProvider dehydratedState={dehydratedState}>
         <PostsClient />
       </TanstackProvider>
-    </main>
+    </div>
   );
 };
 

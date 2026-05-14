@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import type { Post } from "@/service/fetchApi";
 import { usePosts } from "@/service/query";
 import PostsSkeleton from "./PostsSkeleton";
 
@@ -38,7 +39,7 @@ export default function PostsClient() {
 
           <tbody>
             {Array.isArray(data) &&
-              data.slice(0, 10).map((post: any) => (
+              data.slice(0, 10).map((post: Post) => (
                 <tr key={post.id} className="hover:bg-gray-50">
                   <td className="p-2 border">{post.id}</td>
                   <td className="p-2 border">{post.title}</td>
