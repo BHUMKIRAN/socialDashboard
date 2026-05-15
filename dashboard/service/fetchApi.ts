@@ -11,20 +11,14 @@ const fetchFromApi = async <T>(path: string): Promise<T> => {
   return res.json();
 };
 
-export type Post = {
-  id: number;
-  title: string;
-  userId: number;
-};
+export const posts = () => fetchFromApi<Posts>("/posts");
 
-export const posts = () => fetchFromApi<Post[]>("/posts");
+export const users = () => fetchFromApi<Users>(`/users`);
 
-export const users = () => fetchFromApi("/users");
+export const comments = () => fetchFromApi<Comments>("/comments");
 
-export const comments = () => fetchFromApi("/comments");
+export const albums = () => fetchFromApi<Albums>("/albums");
 
-export const albums = () => fetchFromApi("/albums");
+export const photos = () => fetchFromApi<Photos>("/photos");
 
-export const photos = () => fetchFromApi("/photos");
-
-export const todos = () => fetchFromApi("/todos");
+export const todos = () => fetchFromApi<Todos>("/todos");
